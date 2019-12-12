@@ -9,31 +9,38 @@ namespace WebApiDemo.Controllers
 {
     public class ValuesController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        List<string> apiList = new List<string>()
         {
-            return new string[] { "value1", "value2" };
+            "Value1", "Value2", "Value3"
+        };
+
+        public List<string> Get()
+        {
+            return apiList;
         }
 
         // GET api/values/5
         public string Get(int id)
         {
-            return "value";
+            return apiList[id].ToString();
         }
 
         // POST api/values
         public void Post([FromBody]string value)
         {
+            apiList.Add(value);
         }
 
         // PUT api/values/5
         public void Put(int id, [FromBody]string value)
         {
+            apiList[id] = value;
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
+            apiList.RemoveAt(id);
         }
     }
 }
